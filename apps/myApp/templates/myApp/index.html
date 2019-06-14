@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books and Authors</title>
+</head>
+<body>
+    <div id='wrapper'>
+        <h1>Add a book</h1>
+        <form action="/books" method="POST">
+        {% csrf_token %}
+        <p>Title <input type="text" name="titleadd"></p>
+        <p>Description <input type="text" name="descadd"></p>
+        <input type="submit" value="Add">
+        </form>
+
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for Book in allbooks %}
+                <tr>
+                    <td>{{ Book.id }}</td>
+                    <td>{{ Book.title }}</td>
+                    <td><a href="/books/{{Book.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

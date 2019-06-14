@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books and Authors</title>
+</head>
+
+<body>
+    <h1>{{ author.first_name }}  {{ author.last_name }}</h1>
+    <p>Id: {{ author.id }}</p>
+    <p>Notes: {{ author.notes }}</p>
+    <p>Books</p>
+    <ul>
+        {% for book in allbooks %}
+        <li>{{ book.title }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/authorbook/{{author.id}}" method="POST">
+        {% csrf_token %}
+        <select name="book_id">
+            {% for book in otherbooks %}
+            <option value="{{book.id}}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books and Authors</title>
+</head>
+
+<body>
+    <div id='wrapper'>
+        <h1>Add an Author</h1>
+        <form action="/authoradd" method="POST">
+            {% csrf_token %}
+            <p>First Name <input type="text" name="firstname"></p>
+            <p>Last Name <input type="text" name="lastname"></p>
+            <p>Notes <input type="text" name="notes"></p>
+            <input type="submit" value="Add">
+        </form>
+
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for Author in allauthors %}
+                <tr>
+                    <td>{{ Author.id }}</td>
+                    <td>{{ Author.first_name }} {{ Author.last_name }}</td>
+                    <td><a href="/authors/{{Author.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
